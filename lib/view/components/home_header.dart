@@ -14,6 +14,7 @@ class HomeHeader extends StatelessWidget {
       width: double.infinity,
       child: Column(
         children: [
+          SizedBox(height: 12),
           Text(
             'MONEY TRACKER',
             style:
