@@ -40,9 +40,9 @@ class HomeHeader extends StatelessWidget {
             padding: const EdgeInsets.all(20.0),
             child: const Row(
               children: [
-                HeaderCard(),
+                HeaderCard(title: 'Income', amount: 1000.00, icon: Icon(Icons.attach_money, color: Colors.teal)),
                 SizedBox(width: 12),
-                HeaderCard(),
+                HeaderCard(title: 'Expense', amount: -500.00, icon: Icon(Icons.money_off, color: Colors.red)),
             ],),
           )
       ],),
