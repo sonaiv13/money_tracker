@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:money_tracker/view/components/add_transaction_dialog.dart';
 import 'components/home_header.dart';
 import 'components/transactions_list.dart';
 
@@ -16,6 +17,18 @@ class HomeScreen extends StatelessWidget {
             HomeHeader(),
             TransactionsList()
         ],),
+      ),
+      floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            //Show bottom sheet to add transaction
+            showModalBottomSheet(
+                context: context,
+                isScrollControlled: true,
+                builder: (context) {
+                  return AddTransactionDialog();
+                });
+      },
+          child: Icon(Icons.add),
       ),
     );
   }
