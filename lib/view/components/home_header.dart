@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:money_tracker/controller/transactions_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../widgets/header_card.dart';
 
@@ -10,6 +12,11 @@ class HomeHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final provider = Provider.of<TransactionsProvider>(context);
+    final balance = provider.getBalance();
+    final incomes = provider.getTotalIncomes();
+    final expenses = provider.getTotalExpenses();
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -31,7 +38,7 @@ class HomeHeader extends StatelessWidget {
                 color: Colors.white.withOpacity(0.5)),
           ),
           Text(
-            '\$ 1,000.00',
+            '\$ ${balance.toStringAsFixed(2)}',
             style:
             textTheme.headlineLarge!.copyWith(
                 fontWeight: FontWeight.bold,
@@ -39,11 +46,19 @@ class HomeHeader extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.all(20.0),
-            child: const Row(
+            child: Row(
               children: [
-                HeaderCard(title: 'Income', amount: 1000.00, icon: Icon(Icons.attach_money, color: Colors.teal)),
-                SizedBox(width: 12),
-                HeaderCard(title: 'Expense', amount: -500.00, icon: Icon(Icons.money_off, color: Colors.red)),
+                HeaderCard(
+                    title: 'Incomes',
+                    amount: incomes,
+                    icon: const Icon(Icons.attach_money, color: Colors.teal)
+                ),
+                const SizedBox(width: 12),
+                HeaderCard(
+                    title: 'Expenses',
+                    amount: expenses,
+                    icon: const Icon(Icons.money_off, color: Colors.red)
+                ),
             ],),
           )
       ],),
